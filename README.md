@@ -46,8 +46,7 @@ src/
 Clone o repositório:
 
 ```bash
-git clone <repo-url>
-cd falifeapp
+git clone https://github.com/BrenoOliveiraz/falifeApp.git
 ```
 
 Instale as dependências:
