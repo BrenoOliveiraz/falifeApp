@@ -166,24 +166,6 @@ UI → API (Mirage) → Zustand → UI
 
 ---
 
-## 📸 Prints (Opcional)
-
-> Adicione aqui prints do app rodando
-
-```
-/assets/screenshot-1.png
-/assets/screenshot-2.png
-```
-
----
-
-## 📌 Observações
-
-* O estado não persiste após reload (comportamento esperado do Mirage)
-* Ideal para simular fluxo real de integração com backend
-
----
-
 ## 👨‍💻 Autor
 
 Desenvolvido por **Breno Oliveira**
