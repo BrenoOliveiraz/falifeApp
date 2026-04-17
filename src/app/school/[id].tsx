@@ -11,15 +11,17 @@ import {
   Pressable,
 } from "@gluestack-ui/themed";
 import { useRouter } from "expo-router";
+import { Alert } from "react-native";
+
 import Screen from "@/src/components/Screen";
 import { SchoolForm } from "@/src/modules/schools/components/SchoolForm";
 import { ClassList } from "@/src/modules/schools/components/ClassList";
 import { ScreenHeader } from "@/src/components/HeaderScreen";
 import { useSchoolDetail } from "@/src/modules/schools/hooks/useSchoolDetail";
 
-
 export default function SchoolDetail() {
   const router = useRouter();
+
   const {
     school,
     id,
@@ -41,16 +43,36 @@ export default function SchoolDetail() {
     );
   }
 
+  function confirmDelete() {
+    Alert.alert(
+      "Excluir escola",
+      "Tem certeza que deseja excluir esta escola?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Excluir",
+          style: "destructive",
+          onPress: handleDelete,
+        },
+      ]
+    );
+  }
+
   return (
     <Screen>
       <HStack justifyContent="space-between" alignItems="flex-start" pr="$4">
         <ScreenHeader title={school.name} adress={school.address} />
+
         {!isEditing && (
           <HStack space="md" mt="$12">
             <Pressable onPress={() => setIsEditing(true)}>
               <Icon as={EditIcon} color="$primary500" size="xl" />
             </Pressable>
-            <Pressable onPress={handleDelete}>
+
+            <Pressable onPress={confirmDelete}>
               <Icon as={TrashIcon} color="$error600" size="xl" />
             </Pressable>
           </HStack>
@@ -68,10 +90,12 @@ export default function SchoolDetail() {
               onChangeName={setName}
               onChangeAddress={setAddress}
             />
+
             <HStack space="sm">
               <Button flex={1} onPress={handleSave}>
                 <ButtonText>Salvar</ButtonText>
               </Button>
+
               <Button
                 flex={1}
                 variant="outline"
@@ -82,16 +106,13 @@ export default function SchoolDetail() {
               </Button>
             </HStack>
           </VStack>
-        ) : (
-          <>
-          </>
-        )}
-
+        ) : null}
 
         <HStack justifyContent="space-between" alignItems="center">
           <Text size="lg" fontWeight="$bold" color="$textLight100">
             Turmas
           </Text>
+
           <Button
             size="md"
             variant="solid"
